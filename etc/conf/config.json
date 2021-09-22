@@ -1,0 +1,14 @@
+{
+    "broker"        : "amqp://guest:guest@localhost:5672",
+
+    "topic_start"   : "Start.Console",
+    "topic_request" : "Console.requests",
+    "topic_get"     : "Controller.get_position",
+    "topic_set"     : "Controller.set_position",
+
+    "message_start" : "Start System",
+    "message_ON"    : "System ON",
+    "message_FAIL"  : "System Offline",
+
+    "probability"   : 0.5
+}
