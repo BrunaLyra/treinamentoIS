@@ -1,6 +1,10 @@
 {
     "broker"        : "amqp://guest:guest@localhost:5672",
 
+    "operator"      : "OPERATOR",
+    "console"       : "CONSOLE",
+    "controller"    : "CONTROLLER",
+
     "topic_start"   : "Start.Console",
     "topic_request" : "Console.requests",
     "topic_get"     : "Controller.get_position",

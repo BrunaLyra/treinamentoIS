@@ -25,7 +25,8 @@ class Robot():
         return self.pos_x, self.pos_y
 
 def get_position(RobotTaskReply, ctx):
-    log.info("GET POSITION request received...")
+    function_name = "GET POSITION"
+    log.info(f"{function_name} request received...")
     log.info("Validating arguments...")
     if RobotTaskReply.id < 0 or RobotTaskReply.id > len(list_of_robot):
         return Status(StatusCode.INVALID_ARGUMENT, "Invalid ID")
@@ -33,11 +34,12 @@ def get_position(RobotTaskReply, ctx):
     log.info(f'ROBOT ID: {robot.id} - X: {robot.pos_x} - Y: {robot.pos_y}')
     position = Position()
     position.x, position.y = robot.get_position()
-    log.info("Sending GET POSITION reply...")
+    log.info(f"Sending {function_name} reply...")
     return position
 
 def set_position(RobotTaskRequest, ctx):
-    log.info("SET POSITION request received...")
+    function_name = "SET POSITION"
+    log.info(f"{function_name} request received...")
     log.info("Validating arguments...")
     if RobotTaskRequest.id < 0 or RobotTaskRequest.id > len(list_of_robot):
         return Status(StatusCode.INVALID_ARGUMENT, "Invalid ID")
@@ -48,7 +50,7 @@ def set_position(RobotTaskRequest, ctx):
     robot.set_position(x=RobotTaskRequest.basic_move_task.positions[0].x, y=RobotTaskRequest.basic_move_task.positions[0].y)
     log.info(f'Moving ROBOT ID: {robot.id} to X: {robot.pos_x} - Y: {robot.pos_y}')
     time.sleep(0.5)
-    log.info("Sending GET POSITION reply...")
+    log.info(f"Sending {function_name} reply...")
     return Empty()
 
 def get_robot_object(list_of_robot,id):
@@ -61,7 +63,7 @@ def get_robot_object(list_of_robot,id):
 config_file = sys.argv[1] if len(sys.argv) > 1 else '../etc/conf/config.json'
 config = json.load(open(config_file, 'r'))
 
-log = Logger(name = "CONTROLLER")
+log = Logger(name = config["controller"])
 
 log.info("Initializing robots...")
 list_of_robot = []
